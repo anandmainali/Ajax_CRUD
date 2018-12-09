@@ -13,6 +13,7 @@
     <script>
         $(document).ready(function()
         {
+           // For Searching name from database
             $('#search').keyup(function()
             {
                 var search = $('#search').val();
@@ -29,17 +30,42 @@
                     },
                 });
             });
+
+            // For Adding New name into database
+            $("#add-name-form").submit(function(evt){
+                evt.preventDefault();
+                var postdata = $(this).serialize();
+                var url = $(this).attr('action');
+                
+                $.post(url, postdata, function(php_data_table){
+
+                });
+
+            });
         });
     </script>
 
-    <div id="container" class="text-center col-xs-6 col-xs-offset-3">
-        <h1>Search Database</h1>
-        
-        <input type="text" name="search" id="search" class="form-control" value="" required="required" pattern="" title="" placeholder="Search Something..">
-        <br><br><br>
-        <h2 id="result" class="bg-success">
+    <div id="container" class="col-xs-6 col-xs-offset-3">
+        <div class="row">
+            <h1 class="text-center">Search Database</h1>
+            
+            <input type="text" name="search" id="search" class="form-control" value="" required="required" pattern="" title="" placeholder="Search Something..">
+            <br><br><br>
+            <h2 id="result" class="bg-success"></h2>
+        </div>
 
-        </h2>
+        <!--For Adding New name into database-->
+        <div class="row col-sm-6">
+            <h1>Add New Name</h1>
+            <form id="add-name-form" action="add_name.php" method="post">
+            <div class="form-group">
+                <input type="text" name="name" id="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Name" class="btn btn-primary">
+            </div>
+        </form>
+        </div>
     </div>
 
 

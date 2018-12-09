@@ -1,6 +1,6 @@
 <?php
 
-    $connection = mysqli_connect('localhost','root','','ajax');
+    require('db.php');
 
     // if($connection)
     // {
@@ -8,4 +8,34 @@
     // }
 
     $search = $_POST['search'];
-    echo $search;
+    
+    if(!empty($search))
+    {
+        $query = "SELECT * FROM names WHERE name LIKE '%$search%'";
+        $mysqli_conn = mysqli_query($connection,$query);
+        
+
+            if(!$mysqli_conn)
+            {
+                die('Query Failed. '.mysqli_error($connection));
+            }
+
+            ?>
+
+            
+            <ol>
+            <?php
+
+            while($rows = mysqli_fetch_array($mysqli_conn))
+            {
+                $name = $rows['name'];
+                echo "<li>{$name}</li>";
+            }
+            ?>
+
+            </ol>
+
+            <?php
+            
+        
+    }

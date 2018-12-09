@@ -38,7 +38,7 @@
                 var url = $(this).attr('action');
                 
                 $.post(url, postdata, function(php_data_table){
-
+                    $("#add-name-form")[0].reset();
                 });
 
             });
@@ -65,6 +65,7 @@
                 <input type="submit" value="Add Name" class="btn btn-primary">
             </div>
         </form>
+
         </div>
     </div>
 
